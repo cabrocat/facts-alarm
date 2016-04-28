@@ -1,0 +1,10 @@
+// Import base styles
+@import "base/colors.scss";
+
+// Import modules styles
+
+// General styling
+body {
+    background-color: $black;
+    color: $white;
+}
