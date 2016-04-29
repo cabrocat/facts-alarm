@@ -2,6 +2,6 @@
 
 class Home extends Controller {
     public function index() {
-        $this->twig('index', ['test' => 'hallo']);
+        $this->twig('index', ['test' => 'testert']);
     }
 }

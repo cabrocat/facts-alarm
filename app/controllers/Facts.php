@@ -2,12 +2,6 @@
 
 class Facts extends Controller {
 
-    protected $fact;
-
-    public function __construct() {
-        $this->fact = $this->model('Fact');
-    }
-
     public function index($id = 0) {
         if($id) {
             // Get fact with ID
@@ -27,10 +21,26 @@ class Facts extends Controller {
         return Fact::all();
     }
 
-    public function create($title, $text) {
-        $this->fact->create([
-            'title' => $title,
-            'text' => $text
-        ]);
+    public function create() {
+        $json = json_decode(file_get_contents('php://input'));
+        if(isset($json)) {
+            foreach ($json as $item) {
+                if(isset($item->Title) && isset($item->Text) 
+                && isset($item->Author) && isset($item->Image)) {
+                    Fact::create([
+                        'title' => $item->Title,
+                        'text' => $item->Text,
+                        'author' => $item->Author,
+                        'image' => $item->Image,
+                    ]);
+
+                    print '<pre>' . json_encode(['success' => 'Successfully submitted fact']) . '</pre>';
+                } else {
+                    print '<pre>' . json_encode(['error' => 'Missing JSON properties']) . '</pre>';
+                }
+            }
+        } else {
+            print '<pre>' . json_encode(['error' => 'Missing JSON data']) . '</pre>';
+        }
     }
 }

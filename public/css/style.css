@@ -1,3 +1,62 @@
+@import url(../vendor/fortawesome/font-awesome/css/font-awesome.css);
+@import url(../vendor/twbs/bootstrap/dist/css/bootstrap.css);
+.menu {
+  width: 340px;
+  height: 100%;
+  position: absolute;
+  background: #FFF;
+  left: -340px;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out; }
+  .menu ul {
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: #5f6f81;
+    list-style: none;
+    text-transform: none;
+    font-weight: 300;
+    font-family: 'Lato', Arial, sans-serif;
+    line-height: 60px;
+    font-size: 18px; }
+    .menu ul li {
+      box-shadow: inset 0 1px #c6d0da; }
+      .menu ul li:hover {
+        background: #5f6f81; }
+        .menu ul li:hover a {
+          color: #FFF; }
+      .menu ul li a {
+        display: block;
+        height: 100%;
+        color: #5f6f81;
+        text-decoration: none;
+        cursor: pointer; }
+        .menu ul li a i {
+          display: inline-block;
+          width: 60px;
+          text-align: center; }
+
+.menu-icon {
+  padding: 10px 20px;
+  background: #E5DAC0;
+  color: #987D3E;
+  cursor: pointer;
+  float: right;
+  margin: 6px 6px 0 0;
+  border-radius: 5px; }
+
+#menuToggle {
+  display: none; }
+
+#menuToggle:checked ~ .menu {
+  position: absolute;
+  left: 0; }
+
 body {
-  background-color: black;
-  color: white; }
+  background-color: #34495e;
+  color: #FFF; }
+
+/*# sourceMappingURL=style.css.map */

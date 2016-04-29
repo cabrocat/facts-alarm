@@ -1,10 +1,15 @@
+// Import dependancies
+@import "../vendor/fortawesome/font-awesome/css/font-awesome.css";
+@import "../vendor/twbs/bootstrap/dist/css/bootstrap.css";
+
 // Import base styles
 @import "base/colors.scss";
 
 // Import modules styles
+@import "modules/nav.scss";
 
 // General styling
 body {
-    background-color: $black;
+    background-color: #34495e;
     color: $white;
 }

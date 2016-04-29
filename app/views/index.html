@@ -1,4 +1,33 @@
-<link rel="stylesheet" href="/Feitjes/public/css/style.css" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Feitjes/public/css/style.css" />
+</head>
+<body>
 
-<h2>Header</h2>
-<div>{{ test }}</div>
+    <input type="checkbox" id="menuToggle">
+    <label for="menuToggle" class="menu-icon">&#9776;</label>
+
+    <nav class="menu">
+        <ul>
+            <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Admin Panel</a></li>
+            <li><a href="#"><i class="fa fa-list-ol" aria-hidden="true"></i> Facts</a></li>
+            <li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> Pending</a></li>
+            <li><a href="facts"><i class="fa fa-rss-square" aria-hidden="true"></i> Rest API</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Admin Panel</h2>
+                <div>{{ test }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
