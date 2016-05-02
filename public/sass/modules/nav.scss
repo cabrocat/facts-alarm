@@ -48,17 +48,16 @@
             }
         }
     }
-    
 }
+
 .menu-icon {
-    padding: 10px 20px;
-    background: #E5DAC0;
-    color: #987D3E;
+    margin: 0 25px;
+    color: $white;
     cursor: pointer;
     float: right;
-    margin: 6px 6px 0 0;
-    border-radius: 5px;
+    font-size: 30px;
 }
+
 #menuToggle { display: none; }
 
-#menuToggle:checked ~ .menu { position: absolute; left: 0; }
+#menuToggle:checked ~ .menu { position: absolute; left: 0; top: 0; }

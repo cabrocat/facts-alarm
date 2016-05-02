@@ -28,10 +28,10 @@ class Facts extends Controller {
                 if(isset($item->Title) && isset($item->Text) 
                 && isset($item->Author) && isset($item->Image)) {
                     Fact::create([
-                        'title' => $item->Title,
-                        'text' => $item->Text,
-                        'author' => $item->Author,
-                        'image' => $item->Image,
+                        'Title' => $item->Title,
+                        'Text' => $item->Text,
+                        'Author' => $item->Author,
+                        'Image' => $item->Image,
                     ]);
 
                     print '<pre>' . json_encode(['success' => 'Successfully submitted fact']) . '</pre>';
@@ -41,6 +41,57 @@ class Facts extends Controller {
             }
         } else {
             print '<pre>' . json_encode(['error' => 'Missing JSON data']) . '</pre>';
+        }
+    }
+
+    public function update($id = 0) {
+        if($id) {
+            $success = FALSE;
+
+            if(isset($_POST) && !is_null($_POST) && !empty($_POST)) {
+                $p = $_POST;
+
+                if(isset($p['title']) && isset($p['text']) 
+                && isset($p['author']) && isset($p['image'])) {
+                    $fact = $this->getFact($id);
+ 
+                    $fact->title = $p['title'];
+                    $fact->text = $p['text'];
+                    $fact->author = $p['author'];
+                    $fact->image = $p['image'];
+
+                    $success = $fact->save();
+                }
+            }
+            
+            $this->twig('update', [
+                'fact' => json_decode($this->getFact($id)),
+                'success' => $success
+            ]);
+        } else {
+            header("Location: ../../index");
+            die();
+        }
+    }
+
+    public function delete($id = 0) {
+        if($id) {
+            $fact = $this->getFact($id);
+            $fact->delete();
+        }
+
+        header("Location: ../../index");
+        die();
+    }
+
+    public function generate($amount) {
+        for($i = 0; $i < $amount; $i++) {
+            Fact::create([
+                'Title' => 'Feitje_' . $i,
+                'Text' => 'Text_' . $i,
+                'Author' => 'Author_' . $i,
+                'Image' => 'Image' . $i . '.jpg',
+            ]);
         }
     }
 }

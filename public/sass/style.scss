@@ -7,9 +7,19 @@
 
 // Import modules styles
 @import "modules/nav.scss";
+@import "modules/tables.scss";
+@import "modules/forms.scss";
 
 // General styling
 body {
     background-color: #34495e;
     color: $white;
+
+    .container {
+        margin: 20px auto;
+    }
+}
+
+h2 {
+    margin: 0;
 }

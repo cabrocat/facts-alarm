@@ -5,7 +5,10 @@ class Controller {
 
     public function twig($view, $data) {
         $loader = new Twig_Loader_Filesystem(dirname(__DIR__) . "/" . $this->views);
-        $twig = new Twig_Environment($loader);
+        $twig = new Twig_Environment($loader, [
+            'debug' => true
+        ]);
+        $twig->addExtension(new Twig_Extension_Debug());
 
         echo $twig->render($view . '.html', $data);
     }

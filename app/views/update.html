@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Bewerken{% endblock %}
+
+{% block content %}
+    <h2>Admin Panel</h2>
+    <h3>Bewerken</h3>
+    {% if success %}
+        <span class="success">Successfully updated fact.</span>
+    {% endif %}
+    <form method="POST" action="">
+        <ul>
+            <li>
+                <label>Title</label>
+                <input name="title" type="text" value="{{ fact.Title }}" placeholder="Title" />
+            </li>   
+
+            <li>
+                <label>Text</label>
+                <textarea name="text" placeholder="Text">{{ fact.Text }}</textarea>
+            </li>
+
+            <li>
+                <label>Author</label>
+                <input name="author" type="text" value="{{ fact.Author }}" placeholder="Author" />
+            </li>   
+
+            <li>
+                <label>Image</label>
+                <input name="image" type="text" value="{{ fact.Image }}" placeholder="Image" />
+            </li>                              
+
+            <li>
+                <input type="submit" value="Opslaan" />
+            </li>
+        </ul>
+    </form>
+{% endblock %}

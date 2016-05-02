@@ -4,14 +4,15 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Fact extends Eloquent {
     public $table = "fact";
+    protected $primaryKey = 'ID';
 
-    public $id;
-    public $title;
-    public $text;
-    public $author;
-    public $image;
+    public $ID;
+    public $Title;
+    public $Text;
+    public $Author;
+    public $Image;
 
-    public $timestamps = [];
+    public $timestamps = false;
 
-    protected $fillable = ['title', 'text', 'author', 'image'];
+    protected $fillable = ['Title', 'Text', 'Author', 'Image'];
 }

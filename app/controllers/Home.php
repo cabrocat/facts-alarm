@@ -1,7 +1,10 @@
 <?php
 
+ require_once 'Facts.php';
+
 class Home extends Controller {
     public function index() {
-        $this->twig('index', ['test' => 'testert']);
+        $controller = new Facts();
+        $this->twig('index', ['facts' => json_decode($controller->getFacts())]);
     }
 }
