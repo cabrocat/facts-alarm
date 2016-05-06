@@ -3,30 +3,30 @@
 {% block title %}Admin Panel{% endblock %}
 
 {% block content %}
-    <h2>Admin Panel</h2>
-    <h3>Facts</h3>
-    <table class="facts-table" cellpadding="0" cellspacing="0" border="0">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Text</th>
-                <th>Author</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for fact in facts %}
-                <tr>
-                    <td>{{ fact.ID }}</td>
-                    <td>{{ fact.Title }}</td>
-                    <td>{{ fact.Text }}</td>
-                    <td>{{ fact.Author }}</td>
-                    <td><a href="facts/update/{{ fact.ID }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-                    <td><a href="facts/delete/{{ fact.ID }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<h2>Admin Panel</h2>
+<h3>Facts</h3>
+<table class="facts-table" cellpadding="0" cellspacing="0" border="0">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Text</th>
+        <th>Author</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for fact in facts %}
+    <tr>
+        <td>{{ fact.ID }}</td>
+        <td>{{ fact.Title }}</td>
+        <td>{{ fact.Text }}</td>
+        <td>{{ fact.Author }}</td>
+        <td><a href="facts/update/{{ fact.ID }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+        <td><a href="facts/delete/{{ fact.ID }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

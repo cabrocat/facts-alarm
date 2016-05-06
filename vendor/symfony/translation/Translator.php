@@ -11,11 +11,11 @@
 
 namespace Symfony\Component\Translation;
 
-use Symfony\Component\Translation\Loader\LoaderInterface;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
-use Symfony\Component\Config\ConfigCacheInterface;
-use Symfony\Component\Config\ConfigCacheFactoryInterface;
 use Symfony\Component\Config\ConfigCacheFactory;
+use Symfony\Component\Config\ConfigCacheFactoryInterface;
+use Symfony\Component\Config\ConfigCacheInterface;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
+use Symfony\Component\Translation\Loader\LoaderInterface;
 
 /**
  * Translator.
@@ -72,10 +72,10 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
     /**
      * Constructor.
      *
-     * @param string               $locale   The locale
+     * @param string $locale The locale
      * @param MessageSelector|null $selector The message selector for pluralization
-     * @param string|null          $cacheDir The directory to use for the cache
-     * @param bool                 $debug    Use cache in debug mode ?
+     * @param string|null $cacheDir The directory to use for the cache
+     * @param bool $debug Use cache in debug mode ?
      *
      * @throws \InvalidArgumentException If a locale contains invalid characters
      */
@@ -100,7 +100,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
     /**
      * Adds a Loader.
      *
-     * @param string          $format The name of the loader (@see addResource())
+     * @param string $format The name of the loader (@see addResource())
      * @param LoaderInterface $loader A LoaderInterface instance
      */
     public function addLoader($format, LoaderInterface $loader)
@@ -111,10 +111,10 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
     /**
      * Adds a Resource.
      *
-     * @param string $format   The name of the loader (@see addLoader())
-     * @param mixed  $resource The resource name
-     * @param string $locale   The locale
-     * @param string $domain   The domain
+     * @param string $format The name of the loader (@see addLoader())
+     * @param mixed $resource The resource name
+     * @param string $locale The locale
+     * @param string $domain The domain
      *
      * @throws \InvalidArgumentException If the locale contains invalid characters
      */
@@ -163,7 +163,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
      */
     public function setFallbackLocale($locales)
     {
-        @trigger_error('The '.__METHOD__.' method is deprecated since version 2.3 and will be removed in 3.0. Use the setFallbackLocales() method instead.', E_USER_DEPRECATED);
+        @trigger_error('The ' . __METHOD__ . ' method is deprecated since version 2.3 and will be removed in 3.0. Use the setFallbackLocales() method instead.', E_USER_DEPRECATED);
 
         $this->setFallbackLocales(is_array($locales) ? $locales : array($locales));
     }
@@ -206,7 +206,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
             $domain = 'messages';
         }
 
-        return strtr($this->getCatalogue($locale)->get((string) $id, $domain), $parameters);
+        return strtr($this->getCatalogue($locale)->get((string)$id, $domain), $parameters);
     }
 
     /**
@@ -218,7 +218,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
             $domain = 'messages';
         }
 
-        $id = (string) $id;
+        $id = (string)$id;
         $catalogue = $this->getCatalogue($locale);
         $locale = $catalogue->getLocale();
         while (!$catalogue->defines($id, $domain)) {
@@ -230,7 +230,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
             }
         }
 
-        return strtr($this->selector->choose($catalogue->get($id, $domain), (int) $number, $locale), $parameters);
+        return strtr($this->selector->choose($catalogue->get($id, $domain), (int)$number, $locale), $parameters);
     }
 
     /**
@@ -272,7 +272,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
      */
     public function getMessages($locale = null)
     {
-        @trigger_error('The '.__METHOD__.' method is deprecated since version 2.8 and will be removed in 3.0. Use TranslatorBagInterface::getCatalogue() method instead.', E_USER_DEPRECATED);
+        @trigger_error('The ' . __METHOD__ . ' method is deprecated since version 2.8 and will be removed in 3.0. Use TranslatorBagInterface::getCatalogue() method instead.', E_USER_DEPRECATED);
 
         $catalogue = $this->getCatalogue($locale);
         $messages = $catalogue->all();
@@ -401,7 +401,7 @@ EOF
 
     private function getCatalogueCachePath($locale)
     {
-        return $this->cacheDir.'/catalogue.'.$locale.'.'.sha1(serialize($this->fallbackLocales)).'.php';
+        return $this->cacheDir . '/catalogue.' . $locale . '.' . sha1(serialize($this->fallbackLocales)) . '.php';
     }
 
     private function doLoadCatalogue($locale)

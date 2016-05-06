@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Fact' => $baseDir . '/app/models/Fact.php',
+    'PendingFact' => $baseDir . '/app/models/PendingFact.php',
 );

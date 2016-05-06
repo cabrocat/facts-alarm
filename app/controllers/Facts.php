@@ -1,32 +1,37 @@
 <?php
 
-class Facts extends Controller {
+class Facts extends Controller
+{
 
-    public function index($id = 0) {
-        if($id) {
+    public function index($id = 0)
+    {
+        if ($id) {
             // Get fact with ID
-            print '<pre>' .  json_encode($this->getFact($id)) . '</pre>';
-        } 
-        else {
+            print '<pre>' . json_encode($this->getFact($id)) . '</pre>';
+        } else {
             // Get all facts
-            print '<pre>' .  json_encode($this->getFacts()) . '</pre>';
+            print '<pre>' . json_encode($this->getFacts()) . '</pre>';
         }
     }
 
-    public function getFact($id) {
+    public function getFact($id)
+    {
         return Fact::find($id);
     }
 
-    public function getFacts() {
+    public function getFacts()
+    {
         return Fact::all();
     }
 
-    public function create() {
+    public function create()
+    {
         $json = json_decode(file_get_contents('php://input'));
-        if(isset($json)) {
+        if (isset($json)) {
             foreach ($json as $item) {
-                if(isset($item->Title) && isset($item->Text) 
-                && isset($item->Author) && isset($item->Image)) {
+                if (isset($item->Title) && isset($item->Text)
+                    && isset($item->Author) && isset($item->Image)
+                ) {
                     Fact::create([
                         'Title' => $item->Title,
                         'Text' => $item->Text,
@@ -44,17 +49,19 @@ class Facts extends Controller {
         }
     }
 
-    public function update($id = 0) {
-        if($id) {
+    public function update($id = 0)
+    {
+        if ($id) {
             $success = FALSE;
 
-            if(isset($_POST) && !is_null($_POST) && !empty($_POST)) {
+            if (isset($_POST) && !is_null($_POST) && !empty($_POST)) {
                 $p = $_POST;
 
-                if(isset($p['title']) && isset($p['text']) 
-                && isset($p['author']) && isset($p['image'])) {
+                if (isset($p['title']) && isset($p['text'])
+                    && isset($p['author']) && isset($p['image'])
+                ) {
                     $fact = $this->getFact($id);
- 
+
                     $fact->title = $p['title'];
                     $fact->text = $p['text'];
                     $fact->author = $p['author'];
@@ -63,7 +70,7 @@ class Facts extends Controller {
                     $success = $fact->save();
                 }
             }
-            
+
             $this->twig('update', [
                 'fact' => json_decode($this->getFact($id)),
                 'success' => $success
@@ -74,8 +81,9 @@ class Facts extends Controller {
         }
     }
 
-    public function delete($id = 0) {
-        if($id) {
+    public function delete($id = 0)
+    {
+        if ($id) {
             $fact = $this->getFact($id);
             $fact->delete();
         }
@@ -84,8 +92,9 @@ class Facts extends Controller {
         die();
     }
 
-    public function generate($amount) {
-        for($i = 0; $i < $amount; $i++) {
+    public function generate($amount)
+    {
+        for ($i = 0; $i < $amount; $i++) {
             Fact::create([
                 'Title' => 'Feitje_' . $i,
                 'Text' => 'Text_' . $i,

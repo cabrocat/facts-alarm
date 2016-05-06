@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<h2>Admin Panel</h2>
+<h3>Pending</h3>
+<table class="facts-table" cellpadding="0" cellspacing="0" border="0">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Text</th>
+        <th>Author</th>
+        <th>Image</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for fact in facts %}
+    <tr>
+        <td>{{ fact.ID }}</td>
+        <td>{{ fact.Title }}</td>
+        <td>{{ fact.Text }}</td>
+        <td>{{ fact.Author }}</td>
+        <td>{{ fact.Image }}</td>
+        <td><a class="approve-pending" data-id="{{ fact.ID }}"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+        </td>
+        <td><a class="delete-pending" data-id="{{ fact.ID }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if not facts %} There are currently no pending facts {% endif %}
+{% endblock %}

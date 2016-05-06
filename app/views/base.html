@@ -2,33 +2,39 @@
 <html lang="en">
 <head>
     {% block head %}
-        <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/facts-alarm/public/css/style.css" />
-        <base href="http://localhost/facts-alarm/">
-     {% endblock %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/facts-alarm/public/css/style.css"/>
+    <base href="http://localhost/facts-alarm/"/>
+    {% endblock %}
 </head>
 <body>
-    <input type="checkbox" id="menuToggle">
-    <label for="menuToggle" class="menu-icon">&#9776;</label>
+<input type="checkbox" id="menuToggle">
+<label for="menuToggle" class="menu-icon">&#9776;</label>
 
-    <nav class="menu">
-        <ul>
-            <li><a href="index"><i class="fa fa-home" aria-hidden="true"></i> Admin Panel</a></li>
-            <!-- <li><a href="#"><i class="fa fa-list-ol" aria-hidden="true"></i> Facts</a></li> -->
-            <li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> Pending Facts</a></li>
-            <li><a href="facts"><i class="fa fa-rss-square" aria-hidden="true"></i> Rest API</a></li>
-        </ul>
-    </nav>
+<nav class="menu">
+    <ul>
+        <li><a href="index"><i class="fa fa-home" aria-hidden="true"></i> Admin Panel</a></li>
+        <!-- <li><a href="#"><i class="fa fa-list-ol" aria-hidden="true"></i> Facts</a></li> -->
+        <li><a href="pending"><i class="fa fa-clock-o" aria-hidden="true"></i> Pending Facts</a></li>
+        <li><a href="facts"><i class="fa fa-rss-square" aria-hidden="true"></i> Rest API</a></li>
+    </ul>
+</nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                {% block content %}{% endblock %}
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="notifications"></div>
+            {% block content %}{% endblock %}
         </div>
     </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"
+        integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
+        crossorigin="anonymous"></script>
+<script src="/facts-alarm/public/js/pending.js"></script>
 </body>
 </html>

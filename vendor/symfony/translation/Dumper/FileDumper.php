@@ -70,10 +70,10 @@ abstract class FileDumper implements DumperInterface
         // save a file for each domain
         foreach ($messages->getDomains() as $domain) {
             // backup
-            $fullpath = $options['path'].'/'.$this->getRelativePath($domain, $messages->getLocale());
+            $fullpath = $options['path'] . '/' . $this->getRelativePath($domain, $messages->getLocale());
             if (file_exists($fullpath)) {
                 if ($this->backup) {
-                    copy($fullpath, $fullpath.'~');
+                    copy($fullpath, $fullpath . '~');
                 }
             } else {
                 $directory = dirname($fullpath);
@@ -85,46 +85,6 @@ abstract class FileDumper implements DumperInterface
             file_put_contents($fullpath, $this->formatCatalogue($messages, $domain, $options));
         }
     }
-
-    /**
-     * Transforms a domain of a message catalogue to its string representation.
-     *
-     * Override this function in child class if $options is used for message formatting.
-     *
-     * @param MessageCatalogue $messages
-     * @param string           $domain
-     * @param array            $options
-     *
-     * @return string representation
-     */
-    public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = array())
-    {
-        @trigger_error('The '.__METHOD__.' method will replace the format method in 3.0. You should overwrite it instead of overwriting format instead.', E_USER_DEPRECATED);
-
-        return $this->format($messages, $domain);
-    }
-
-    /**
-     * Transforms a domain of a message catalogue to its string representation.
-     *
-     * @param MessageCatalogue $messages
-     * @param string           $domain
-     *
-     * @return string representation
-     *
-     * @deprecated since version 2.8, to be removed in 3.0. Overwrite formatCatalogue() instead.
-     */
-    protected function format(MessageCatalogue $messages, $domain)
-    {
-        throw new \LogicException('The "FileDumper::format" method needs to be overwritten, you should implement either "format" or "formatCatalogue".');
-    }
-
-    /**
-     * Gets the file extension of the dumper.
-     *
-     * @return string file extension
-     */
-    abstract protected function getExtension();
 
     /**
      * Gets the relative file path using the template.
@@ -141,5 +101,45 @@ abstract class FileDumper implements DumperInterface
             '%locale%' => $locale,
             '%extension%' => $this->getExtension(),
         ));
+    }
+
+    /**
+     * Gets the file extension of the dumper.
+     *
+     * @return string file extension
+     */
+    abstract protected function getExtension();
+
+    /**
+     * Transforms a domain of a message catalogue to its string representation.
+     *
+     * Override this function in child class if $options is used for message formatting.
+     *
+     * @param MessageCatalogue $messages
+     * @param string $domain
+     * @param array $options
+     *
+     * @return string representation
+     */
+    public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = array())
+    {
+        @trigger_error('The ' . __METHOD__ . ' method will replace the format method in 3.0. You should overwrite it instead of overwriting format instead.', E_USER_DEPRECATED);
+
+        return $this->format($messages, $domain);
+    }
+
+    /**
+     * Transforms a domain of a message catalogue to its string representation.
+     *
+     * @param MessageCatalogue $messages
+     * @param string $domain
+     *
+     * @return string representation
+     *
+     * @deprecated since version 2.8, to be removed in 3.0. Overwrite formatCatalogue() instead.
+     */
+    protected function format(MessageCatalogue $messages, $domain)
+    {
+        throw new \LogicException('The "FileDumper::format" method needs to be overwritten, you should implement either "format" or "formatCatalogue".');
     }
 }

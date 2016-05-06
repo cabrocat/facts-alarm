@@ -30,7 +30,7 @@ class IcuResFileDumper extends FileDumper
      */
     public function format(MessageCatalogue $messages, $domain = 'messages')
     {
-        @trigger_error('The '.__METHOD__.' method is deprecated since version 2.8 and will be removed in 3.0. Use the formatCatalogue() method instead.', E_USER_DEPRECATED);
+        @trigger_error('The ' . __METHOD__ . ' method is deprecated since version 2.8 and will be removed in 3.0. Use the formatCatalogue() method instead.', E_USER_DEPRECATED);
 
         return $this->formatCatalogue($messages, $domain);
     }
@@ -44,7 +44,7 @@ class IcuResFileDumper extends FileDumper
 
         foreach ($messages->all($domain) as $source => $target) {
             $indexes .= pack('v', strlen($data) + 28);
-            $data    .= $source."\0";
+            $data .= $source . "\0";
         }
 
         $data .= $this->writePadding($data);
@@ -55,18 +55,16 @@ class IcuResFileDumper extends FileDumper
             $resources .= pack('V', $this->getPosition($data));
 
             $data .= pack('V', strlen($target))
-                .mb_convert_encoding($target."\0", 'UTF-16LE', 'UTF-8')
-                .$this->writePadding($data)
-                  ;
+                . mb_convert_encoding($target . "\0", 'UTF-16LE', 'UTF-8')
+                . $this->writePadding($data);
         }
 
         $resOffset = $this->getPosition($data);
 
         $data .= pack('v', count($messages))
-            .$indexes
-            .$this->writePadding($data)
-            .$resources
-              ;
+            . $indexes
+            . $this->writePadding($data)
+            . $resources;
 
         $bundleTop = $this->getPosition($data);
 
@@ -89,7 +87,7 @@ class IcuResFileDumper extends FileDumper
             1, 4, 0, 0              // Unicode version
         );
 
-        return $header.$root.$data;
+        return $header . $root . $data;
     }
 
     private function writePadding($data)
