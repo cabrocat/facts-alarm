@@ -58,3 +58,6 @@ vendor
 
 # SASS
 .sass-cache
+
+# Other
+.idea
