@@ -11,7 +11,7 @@ class Feedback extends Controller
 
     public function getFeedback()
     {
-        return Feedback::all();
+        return FeedbackItem::all();
     }
 
     public function create()
@@ -19,7 +19,7 @@ class Feedback extends Controller
         $json = json_decode(file_get_contents('php://input'));
         if (isset($json)) {
             foreach ($json as $item) {
-                Feedback::create([
+                FeedbackItem::create([
                     'FeedbackText' => $item->FeedbackText ? $item->FeedbackText : '',
                     'Category' => $item->Category ? $item->Category : '',
                     'DeviceFamily' => $item->DeviceFamily ? $item->DeviceFamily : '',

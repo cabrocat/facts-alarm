@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Feedback extends Eloquent
+class FeedbackItem extends Eloquent
 {
     public $table = "feedback";
     public $ID;

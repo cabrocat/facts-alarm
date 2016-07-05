@@ -47,13 +47,14 @@ class Facts extends Controller
         if (isset($json)) {
             foreach ($json as $item) {
                 if (isset($item->Title) && isset($item->Text)
-                    && isset($item->Author) && isset($item->Image)
+                    && isset($item->Author) && isset($item->Image) && isset($item->Language)
                 ) {
                     Fact::create([
                         'Title' => $item->Title,
                         'Text' => $item->Text,
                         'Author' => $item->Author,
                         'Image' => $item->Image,
+                        'Language' => $item->Language,
                     ]);
 
                     print '<pre>' . json_encode(['success' => 'Successfully submitted fact']) . '</pre>';
@@ -75,7 +76,7 @@ class Facts extends Controller
                 $p = $_POST;
 
                 if (isset($p['title']) && isset($p['text'])
-                    && isset($p['author']) && isset($p['image'])
+                    && isset($p['author']) && isset($p['image']) && isset($p['language'])
                 ) {
                     $fact = $this->getFact($id);
 
@@ -83,6 +84,7 @@ class Facts extends Controller
                     $fact->text = $p['text'];
                     $fact->author = $p['author'];
                     $fact->image = $p['image'];
+                    $fact->language = $p['language'];
 
                     $success = $fact->save();
                 }
@@ -117,6 +119,7 @@ class Facts extends Controller
                 'Text' => 'Text_' . $i,
                 'Author' => 'Author_' . $i,
                 'Image' => 'Image' . $i . '.jpg',
+                'Language' => 'NL',
             ]);
         }
     }
