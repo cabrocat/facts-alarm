@@ -24,6 +24,23 @@ class Facts extends Controller
         return Fact::all();
     }
 
+    public function random($exclude = 0)
+    {
+        $facts = json_decode(json_encode($this->getFacts()));
+        $exclude_facts = $exclude ? explode(',', $exclude) : [];
+        $available_facts = [];
+
+        foreach ($facts as $fact) {
+            if(!in_array($fact->ID, $exclude_facts)) {
+                $available_facts[] = $fact;
+            }
+        }
+
+        $rand = array_rand($available_facts);
+
+        print '<pre>' . json_encode($available_facts[$rand]) . '</pre>';
+    }
+
     public function create()
     {
         $json = json_decode(file_get_contents('php://input'));

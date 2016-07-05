@@ -10,7 +10,8 @@ class PendingFact extends Eloquent
     public $Text;
     public $Author;
     public $Image;
+    public $Language;
     public $timestamps = false;
     protected $primaryKey = 'ID';
-    protected $fillable = ['Title', 'Text', 'Author', 'Image'];
+    protected $fillable = ['Title', 'Text', 'Author', 'Image', 'Language'];
 }

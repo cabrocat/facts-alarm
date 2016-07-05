@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<h2>Admin Panel</h2>
+<h3>Feedback</h3>
+<table class="feedback-table" cellpadding="0" cellspacing="0" border="0">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>FeedbackText</th>
+        <th>Category</th>
+        <th>DeviceFamily</th>
+        <th>OsVersion</th>
+        <th>SystemSku</th>
+        <th>SystemArchitecture</th>
+        <th>AppVersion</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in feedback %}
+    <tr>
+        <td>{{ item.ID }}</td>
+        <td>{{ item.FeedbackText }}</td>
+        <td>{{ item.Category }}</td>
+        <td>{{ item.DeviceFamily }}</td>
+        <td>{{ item.OsVersion }}</td>
+        <td>{{ item.SystemSku }}</td>
+        <td>{{ item.SystemArchitecture }}</td>
+        <td>{{ item.AppVersion }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
